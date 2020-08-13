@@ -6,6 +6,10 @@
  */
 package com.inventorymanagement.java.dao;
 
+import com.inventorymanagement.java.models.Categories;
+import com.inventorymanagement.java.models.Products;
+import com.inventorymanagement.java.models.Users;
+import com.inventorymanagement.java.utils.DBConstants;
 import com.inventorymanagement.java.utils.configs.db.DBDataSource;
 
 import java.sql.Connection;
@@ -58,21 +62,24 @@ public class DBConnection {
             Statement statement = connection().createStatement();
 
             // the users table
-            String usersTable = "CREATE TABLE IF NOT EXISTS  `inventorymanagement`.`users` " +
-                    "( `id` INT NOT NULL AUTO_INCREMENT , `first_name` VARCHAR(32) NOT NULL , " +
-                    "`last_name` VARCHAR(32) NOT NULL , `email` VARCHAR(64) NOT NULL , " +
-                    "`gender` VARCHAR(10) NOT NULL , `number` VARCHAR(15) NOT NULL ," +
-                    " password VARCHAR(1024) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;";
-
-            // the products table
-            String productsTable = "CREATE TABLE IF NOT EXISTS `inventorymanagement`.`categories` " +
-                    "( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(32) NOT NULL ," +
-                    " `description` VARCHAR(64) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
+            String usersTable = "CREATE TABLE IF NOT EXISTS  `inventorymanagement`.`" + DBConstants.TABLE_USERS +
+                    "` ( `" + Users.USER_ID + "` INT NOT NULL AUTO_INCREMENT , `" + Users.USER_FIRST_NAME +
+                    "` VARCHAR(32) NOT NULL , `" + Users.USER_LAST_NAME + "` VARCHAR(32) NOT NULL , `" +
+                    Users.USER_EMAIL + "` VARCHAR(64) NOT NULL , `" + Users.USER_GENDER + "` VARCHAR(10) NOT NULL ," +
+                    " `" + Users.USER_NUMBER + "` VARCHAR(15) NOT NULL , `" + Users.USER_PASSWORD + "` VARCHAR(1024) NOT NULL," +
+                    " PRIMARY KEY (`id`)) ENGINE = InnoDB;";
 
             // the categories table
-            String categoriesTable = "CREATE TABLE IF NOT EXISTS `inventorymanagement`.`products` " +
-                    "( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(32) NOT NULL ," +
-                    " `price` INT NOT NULL , `numberInStock` INT NOT NULL , " +
+            String categoriesTable = "CREATE TABLE IF NOT EXISTS `inventorymanagement`.`" + DBConstants.TABLE_CATEGORIES +
+                    "` ( `" + Categories.CATEGORY_ID + "` INT NOT NULL AUTO_INCREMENT , `" + Categories.CATEGORY_NAME +
+                    "` VARCHAR(32) NOT NULL ,  `" + Categories.CATEGORY_DESCRIPTION + "` VARCHAR(64) NOT NULL ," +
+                    " PRIMARY KEY (`id`)) ENGINE = InnoDB;";
+
+            // the products table
+            String productsTable = "CREATE TABLE IF NOT EXISTS `inventorymanagement`.`" + DBConstants.TABLE_PRODUCTS +
+                    "` ( `" + Products.PRODUCT_ID + "` INT NOT NULL AUTO_INCREMENT , `" + Products.PRODUCT_NAME + "` VARCHAR(32) NOT NULL , `" +
+                    Products.PRODUCT_DESCRIPTION + "` VARCHAR(64) NOT NULL , `" + Products.PRODUCT_PRICE + "` INT NOT NULL , `" +
+                    Products.PRODUCT_NUMBER_IN_STOCK + "` INT NOT NULL , " +
                     "PRIMARY KEY (`id`)) ENGINE = InnoDB;";
 
             statement.executeUpdate(usersTable);
