@@ -7,6 +7,7 @@
 package com.inventorymanagement.java.main;
 
 import com.inventorymanagement.java.utils.Constants;
+import com.inventorymanagement.java.utils.configs.db.DBDataSource;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,6 +18,8 @@ import java.io.IOException;
 
 public class Launcher extends Application {
 
+    DBDataSource dbDataSource = new DBDataSource();
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -25,7 +28,7 @@ public class Launcher extends Application {
     public void start(Stage primaryStage) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource(Constants.HOME_FXML_DIR));
+            root = FXMLLoader.load(getClass().getResource(Constants.MAIN_FXML_DIR));
         } catch (IOException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -39,5 +42,19 @@ public class Launcher extends Application {
         primaryStage.setTitle("Inventory Management System");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    @Override
+    public void init() throws Exception {
+        super.init();
+        System.out.println(dbDataSource.getDatasource());
+        System.out.println(dbDataSource.getUser());
+        System.out.println(dbDataSource.getPassword());
+
+    }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
     }
 }
