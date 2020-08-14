@@ -48,7 +48,7 @@ public class DBConnection {
             return connection;
         } catch (SQLException e) {
 //            System.out.println(e.getMessage());
-            Logger.getLogger(getClass().getName()).log(Level.INFO, e.getMessage(), e);
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
             return null;
         }
     }
@@ -60,38 +60,38 @@ public class DBConnection {
 
             // the users table
             String usersTable = "CREATE TABLE IF NOT EXISTS  `inventorymanagement`.`" + DBConstants.TABLE_USERS +
-                    "` ( `" + Users.USER_ID + "` INT NOT NULL AUTO_INCREMENT , `" + Users.USER_FIRST_NAME +
-                    "` VARCHAR(32) NOT NULL , `" + Users.USER_LAST_NAME + "` VARCHAR(32) NOT NULL , `" +
-                    Users.USER_EMAIL + "` VARCHAR(64) NOT NULL UNIQUE , `" + Users.USER_GENDER + "` VARCHAR(10) NOT NULL ," +
-                    " `" + Users.USER_NUMBER + "` VARCHAR(15) NOT NULL , `" + Users.USER_PASSWORD + "` VARCHAR(1024) NOT NULL," +
+                    "` ( `" + User.USER_ID + "` INT NOT NULL AUTO_INCREMENT , `" + User.USER_FIRST_NAME +
+                    "` VARCHAR(32) NOT NULL , `" + User.USER_LAST_NAME + "` VARCHAR(32) NOT NULL , `" +
+                    User.USER_EMAIL + "` VARCHAR(64) NOT NULL UNIQUE , `" + User.USER_GENDER + "` VARCHAR(10) NOT NULL ," +
+                    " `" + User.USER_NUMBER + "` VARCHAR(15) NOT NULL , `" + User.USER_PASSWORD + "` VARCHAR(1024) NOT NULL," +
                     " PRIMARY KEY (`id`)) ENGINE = InnoDB;";
 
             // the categories table
             String categoriesTable = "CREATE TABLE IF NOT EXISTS `inventorymanagement`.`" + DBConstants.TABLE_CATEGORIES +
-                    "` ( `" + Categories.CATEGORY_ID + "` INT NOT NULL AUTO_INCREMENT , `" + Categories.CATEGORY_NAME +
-                    "` VARCHAR(32) NOT NULL ,  `" + Categories.CATEGORY_DESCRIPTION + "` VARCHAR(64) ," +
+                    "` ( `" + Category.CATEGORY_ID + "` INT NOT NULL AUTO_INCREMENT , `" + Category.CATEGORY_NAME +
+                    "` VARCHAR(32) NOT NULL UNIQUE ,  `" + Category.CATEGORY_DESCRIPTION + "` VARCHAR(64) ," +
                     " PRIMARY KEY (`id`)) ENGINE = InnoDB;";
 
             // the products table
             String productsTable = "CREATE TABLE IF NOT EXISTS `inventorymanagement`.`" + DBConstants.TABLE_PRODUCTS +
-                    "` ( `" + Products.PRODUCT_ID + "` INT NOT NULL AUTO_INCREMENT , `" +
-                    Products.PRODUCT_NAME + "` VARCHAR(32) NOT NULL , `" +
-                    Products.PRODUCT_DESCRIPTION + "` VARCHAR(64) NOT NULL , `" + Products.PRODUCT_PRICE + "` DOUBLE NOT NULL , `" +
-                    Products.PRODUCT_NUMBER_IN_STOCK + "` INT NOT NULL , `" + Products.PRODUCT_CATEGORY +
+                    "` ( `" + Product.PRODUCT_ID + "` INT NOT NULL AUTO_INCREMENT , `" +
+                    Product.PRODUCT_NAME + "` VARCHAR(32) NOT NULL , `" +
+                    Product.PRODUCT_DESCRIPTION + "` VARCHAR(64) NOT NULL , `" + Product.PRODUCT_PRICE + "` DOUBLE NOT NULL , `" +
+                    Product.PRODUCT_NUMBER_IN_STOCK + "` INT NOT NULL , `" + Product.PRODUCT_CATEGORY +
                     "` VARCHAR(15) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
 
             String recordTable = "CREATE TABLE IF NOT EXISTS `inventorymanagement`.`" + DBConstants.TABLE_RECORDS +
-                    "` ( `" + Records.RECORD_ID + "` INT NOT NULL AUTO_INCREMENT, `" +
-                    Records.RECORD_PRODUCT_NAME + "` VARCHAR(32) NOT NULL, `" + Records.RECORD_PRICE +
-                    "` DOUBLE NOT NULL, ` " + Records.RECORD_DESCRIPTION + "` VARCHAR(64) NOT NULL, `" +
-                    Records.RECORD_CATEGORY + "` VARCHAR(15) NOT NULL, `" + Records.RECORD_DATE + "` " +
+                    "` ( `" + Record.RECORD_ID + "` INT NOT NULL AUTO_INCREMENT, `" +
+                    Record.RECORD_PRODUCT_NAME + "` VARCHAR(32) NOT NULL, `" + Record.RECORD_PRICE +
+                    "` DOUBLE NOT NULL, ` " + Record.RECORD_DESCRIPTION + "` VARCHAR(64) NOT NULL, `" +
+                    Record.RECORD_CATEGORY + "` VARCHAR(15) NOT NULL, `" + Record.RECORD_DATE + "` " +
                     "VARCHAR(15) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;";
 
             String issuesTable = "CREATE TABLE IF NOT EXISTS `inventorymanagement`.`" + DBConstants.TABLE_ISSUES +
-                    "` ( `" + Issues.PRODUCT_ID + "` INT NOT NULL AUTO_INCREMENT, `" +
-                    Issues.PRODUCT_Name + "` VARCHAR(32) NOT NULL, `" + Issues.PRODUCT_PRICE +
-                    "` DOUBLE NOT NULL, ` " + Issues.PRODUCT_DESCRIPTION + "` VARCHAR(64) NOT NULL, `" +
-                    Issues.PRODUCT_CATEGORY + "` VARCHAR(15) NOT NULL, `" + Issues.DATE + "` " +
+                    "` ( `" + Issue.PRODUCT_ID + "` INT NOT NULL AUTO_INCREMENT, `" +
+                    Issue.PRODUCT_Name + "` VARCHAR(32) NOT NULL, `" + Issue.PRODUCT_PRICE +
+                    "` DOUBLE NOT NULL, ` " + Issue.PRODUCT_DESCRIPTION + "` VARCHAR(64) NOT NULL, `" +
+                    Issue.PRODUCT_CATEGORY + "` VARCHAR(15) NOT NULL, `" + Issue.DATE + "` " +
                     "VARCHAR(15) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;";
 
             statement.executeUpdate(usersTable);
@@ -102,7 +102,7 @@ public class DBConnection {
 
             Logger.getLogger(getClass().getName()).log(Level.INFO, "All tables successfully loaded");
         } catch (SQLException e) {
-            Logger.getLogger(getClass().getName()).log(Level.INFO, e.getMessage(), e);
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
 //            e.printStackTrace();
         }
     }

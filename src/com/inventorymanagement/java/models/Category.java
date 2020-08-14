@@ -6,17 +6,17 @@
  */
 package com.inventorymanagement.java.models;
 
-public class Categories {
+public class Category {
     public static final String CATEGORY_ID = "id";
     public static final String CATEGORY_NAME = "category_name";
     public static final String CATEGORY_DESCRIPTION = "category_description";
     private int id;
     private String categoryName, categoryDescription;
 
-    public Categories() {
+    public Category() {
     }
 
-    public Categories(int id, String categoryName, String categoryDescription) {
+    public Category(int id, String categoryName, String categoryDescription) {
         this.id = id;
         this.categoryName = categoryName;
         this.categoryDescription = categoryDescription;

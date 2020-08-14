@@ -6,7 +6,7 @@
  */
 package com.inventorymanagement.java.models;
 
-public class Records {
+public class Record {
     public final static String RECORD_ID = "id";
     public final static String RECORD_PRODUCT_NAME = "product_name";
     public final static String RECORD_PRICE = "product_price";
@@ -17,10 +17,10 @@ public class Records {
     private double productPrice;
     private String productName, productCategory, description, date;
 
-    public Records() {
+    public Record() {
     }
 
-    public Records(int id, double productPrice, String productName, String productCategory, String description, String date) {
+    public Record(int id, double productPrice, String productName, String productCategory, String description, String date) {
         this.id = id;
         this.productPrice = productPrice;
         this.productName = productName;

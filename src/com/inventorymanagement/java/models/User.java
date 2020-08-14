@@ -6,7 +6,7 @@
  */
 package com.inventorymanagement.java.models;
 
-public class Users {
+public class User {
     public static final String USER_ID = "id";
     public static final String USER_FIRST_NAME = "first_name";
     public static final String USER_LAST_NAME = "last_name";
@@ -17,10 +17,10 @@ public class Users {
     private int id;
     private String firstName, lastName, email, gender, number, password;
 
-    public Users() {
+    public User() {
     }
 
-    public Users(int id, String firstName, String lastName, String email, String gender, String number, String password) {
+    public User(int id, String firstName, String lastName, String email, String gender, String number, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
