@@ -8,6 +8,7 @@ package com.inventorymanagement.java.dao;
 
 import com.inventorymanagement.java.models.Category;
 import com.inventorymanagement.java.utils.DBConstants;
+import com.inventorymanagement.java.utils.DBUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

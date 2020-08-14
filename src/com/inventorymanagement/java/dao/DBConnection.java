@@ -78,21 +78,21 @@ public class DBConnection {
                     Product.PRODUCT_NAME + "` VARCHAR(32) NOT NULL , `" +
                     Product.PRODUCT_DESCRIPTION + "` VARCHAR(64) NOT NULL , `" + Product.PRODUCT_PRICE + "` DOUBLE NOT NULL , `" +
                     Product.PRODUCT_NUMBER_IN_STOCK + "` INT NOT NULL , `" + Product.PRODUCT_CATEGORY +
-                    "` VARCHAR(15) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
+                    "` VARCHAR(32) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
 
             String recordTable = "CREATE TABLE IF NOT EXISTS `inventorymanagement`.`" + DBConstants.TABLE_RECORDS +
                     "` ( `" + Record.RECORD_ID + "` INT NOT NULL AUTO_INCREMENT, `" +
                     Record.RECORD_PRODUCT_NAME + "` VARCHAR(32) NOT NULL, `" + Record.RECORD_PRICE +
                     "` DOUBLE NOT NULL, ` " + Record.RECORD_DESCRIPTION + "` VARCHAR(64) NOT NULL, `" +
-                    Record.RECORD_CATEGORY + "` VARCHAR(15) NOT NULL, `" + Record.RECORD_DATE + "` " +
-                    "VARCHAR(15) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;";
+                    Record.RECORD_CATEGORY + "` VARCHAR(30) NOT NULL, `" + Record.RECORD_DATE + "` " +
+                    "VARCHAR(32) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;";
 
             String issuesTable = "CREATE TABLE IF NOT EXISTS `inventorymanagement`.`" + DBConstants.TABLE_ISSUES +
                     "` ( `" + Issue.PRODUCT_ID + "` INT NOT NULL AUTO_INCREMENT, `" +
                     Issue.PRODUCT_Name + "` VARCHAR(32) NOT NULL, `" + Issue.PRODUCT_PRICE +
                     "` DOUBLE NOT NULL, ` " + Issue.PRODUCT_DESCRIPTION + "` VARCHAR(64) NOT NULL, `" +
-                    Issue.PRODUCT_CATEGORY + "` VARCHAR(15) NOT NULL, `" + Issue.DATE + "` " +
-                    "VARCHAR(15) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;";
+                    Issue.PRODUCT_CATEGORY + "` VARCHAR(32) NOT NULL, `" + Issue.DATE + "` " +
+                    "VARCHAR(32) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;";
 
             statement.executeUpdate(usersTable);
             statement.executeUpdate(productsTable);
