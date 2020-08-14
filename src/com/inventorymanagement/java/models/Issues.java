@@ -1,30 +1,27 @@
 /*
  *  Created by @Mak
  *  User: Ahmad
- *  Date: 8/13/2020
- *  Time: 1:23 PM
+ *  Date: 8/14/2020
+ *  Time: 11:03 AM
  */
 package com.inventorymanagement.java.models;
 
-public class Products {
-    public static final String PRODUCT_CATEGORY = "product_category";
-    private int id, noInStock;
-    private Double price;
-
-
-    public static final String PRODUCT_ID = "id";
-    public static final String PRODUCT_NAME = "product_name";
-    public static final String PRODUCT_DESCRIPTION = "product_description";
-    public static final String PRODUCT_PRICE = "product_price";
-    public static final String PRODUCT_NUMBER_IN_STOCK = "number_in_stock";
+public class Issues {
+    public final static String PRODUCT_ID = "id";
+    public final static String PRODUCT_Name = "product_name";
+    public final static String PRODUCT_DESCRIPTION = "product_description";
+    public final static String PRODUCT_PRICE = "product_price";
+    public final static String PRODUCT_CATEGORY = "product_category";
+    public final static String DATE = "date";
+    private int id;
+    private double price;
     private String productName, productDescription, productCategory;
 
-    public Products() {
+    public Issues() {
     }
 
-    public Products(int id, int noInStock, Double price, String productName, String productDescription, String productCategory) {
+    public Issues(int id, double price, String productName, String productDescription, String productCategory) {
         this.id = id;
-        this.noInStock = noInStock;
         this.price = price;
         this.productName = productName;
         this.productDescription = productDescription;
@@ -39,19 +36,11 @@ public class Products {
         this.id = id;
     }
 
-    public int getNoInStock() {
-        return noInStock;
-    }
-
-    public void setNoInStock(int noInStock) {
-        this.noInStock = noInStock;
-    }
-
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
