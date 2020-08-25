@@ -1,8 +1,8 @@
 /*
  *  Created by @Mak
  *  User: Ahmad
- *  Date: 8/9/2020
- *  Time: 4:20 PM
+ *  Date: 8/25/2020
+ *  Time: 3:50 PM
  */
 package com.inventorymanagement.java.controllers;
 
@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainController {
+public class CategoryController {
     double xOffset;
     double yOffset;
     @FXML
@@ -96,5 +96,4 @@ public class MainController {
             e.printStackTrace();
         }
     }
-
 }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mainPane" prefHeight="58.0" prefWidth="771.0"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="com.inventorymanagement.java.controllers.TopMenuController">
+    <children>
+        <ImageView fitHeight="37.0" fitWidth="32.0" layoutX="16.0" layoutY="10.0" pickOnBounds="true"
+                   preserveRatio="true" rotate="-137.0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="10.0">
+            <image>
+                <Image url="@../images/icons8_attach_100px_3.png"/>
+            </image>
+        </ImageView>
+        <Label layoutX="61.0" layoutY="10.0" prefHeight="29.0" prefWidth="109.0" styleClass="top-banner"
+               text="Inventory" AnchorPane.leftAnchor="61.0" AnchorPane.topAnchor="10.0">
+            <font>
+                <Font name="Century Schoolbook" size="23.0"/>
+            </font>
+        </Label>
+        <ImageView fx:id="refresh_btn" fitHeight="25.0" fitWidth="20.0" layoutX="793.0" layoutY="9.0"
+                   pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="141.0" AnchorPane.topAnchor="9.0">
+            <image>
+                <Image url="@../images/icons8_reset_48px.png"/>
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="menu_btn" fitHeight="28.0" fitWidth="20.0" layoutX="826.0" layoutY="9.0" pickOnBounds="true"
+                   preserveRatio="true" AnchorPane.rightAnchor="108.0" AnchorPane.topAnchor="9.0">
+            <image>
+                <Image url="@../images/icons8_menu_100px_2.png"/>
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="minimize_btn" fitHeight="28.0" fitWidth="20.0" layoutX="861.0" layoutY="9.0"
+                   pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="73.0" AnchorPane.topAnchor="9.0">
+            <image>
+                <Image url="@../images/icons8_subtract_48px.png"/>
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="maximize_btn" fitHeight="29.0" fitWidth="20.0" layoutX="893.0" layoutY="10.0"
+                   pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="10.0">
+            <image>
+                <Image url="@../images/icons8_maximize_button_64px_2.png"/>
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="exit_btn" fitHeight="29.0" fitWidth="20.0" layoutX="731.0" layoutY="10.0" pickOnBounds="true"
+                   preserveRatio="true" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="10.0">
+            <image>
+                <Image url="@../images/icons8_delete_60px.png"/>
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </ImageView>
+    </children>
+</AnchorPane>

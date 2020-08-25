@@ -13,12 +13,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
 public class Launcher extends Application {
 
     DBDataSource dbDataSource = new DBDataSource();
+    public static Stage stage = null;
+    double xOffset;
+    double yOffset;
 
     public static void main(String[] args) {
         launch(args);
@@ -37,11 +41,12 @@ public class Launcher extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource(Constants.STYLESHEET_DIR).toExternalForm());
 
-        primaryStage.setResizable(false);
-//        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setTitle("Inventory Management System");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        stage = primaryStage;
     }
 
     @Override
@@ -50,7 +55,6 @@ public class Launcher extends Application {
         System.out.println(dbDataSource.getDatasource());
         System.out.println(dbDataSource.getUser());
         System.out.println(dbDataSource.getPassword());
-
     }
 
     @Override

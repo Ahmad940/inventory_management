@@ -1,0 +1,43 @@
+/*
+    Created on : 24 Aug, 2020, 4:42:53 AM
+    Author     : Ahmad Muhammad
+*/
+
+* {
+    -fx-primary: #fff;
+    -fx-secondary: #0DD8A2;
+
+}
+
+.top-banner {
+    -fx-text-fill: #0DD8A2;
+}
+
+.nav_button {
+    -fx-text-fill: #0DD8A2;
+    -fx-background-color: #fff;
+}
+
+.nav_button:hover {
+    -fx-background-color: #86F2D3;
+    /*-fx-border-width: 0 5 0 0;*/
+    /*-fx-border-style: solid;*/
+    -fx-text-fill: #0DD8A2;
+}
+
+.nav_button_active {
+    -fx-border-color: #0DD8A2;
+    -fx-border-width: 0 5 0 0;
+    -fx-border-style: solid;
+    -fx-text-fill: #0DD8A2;
+}
+
+.root {
+    -fx-background-color: -fx-primary;
+}
+
+
+/*table color*/
+.top_table {
+    -fx-background-color: #86F2D3;
+}
