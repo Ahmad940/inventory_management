@@ -7,9 +7,9 @@
 package com.inventorymanagement.java.models;
 
 public class Product {
-    public static final String PRODUCT_CATEGORY = "product_category";
     private int id, noInStock;
     private Double price;
+    public static final String PRODUCT_CATEGORY = "product_category";
 
 
     public static final String PRODUCT_ID = "id";

@@ -9,9 +9,13 @@ package com.inventorymanagement.java.controllers;
 import com.inventorymanagement.java.main.Launcher;
 import com.inventorymanagement.java.utils.Constants;
 import com.inventorymanagement.java.utils.MyScene;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXTreeTableView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.TreeTableColumn;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -19,6 +23,30 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class IssuesController {
+    @FXML
+    private TreeTableColumn<?, ?> col_date;
+    @FXML
+    private TreeTableColumn<?, String> col_description;
+    @FXML
+    private TreeTableColumn<?, String> col_category;
+    @FXML
+    private TreeTableColumn<?, String> col_price;
+    @FXML
+    private TreeTableColumn<?, String> col_name;
+    @FXML
+    private TreeTableColumn<?, String> col_id;
+    @FXML
+    private JFXTreeTableView<?> tableView;
+
+    @FXML
+    private JFXTextField searchField;
+    @FXML
+    private JFXButton declineBtn;
+    @FXML
+    private JFXButton purchaseBtn;
+    @FXML
+    private JFXButton refreshBtn;
+
     double xOffset;
     double yOffset;
     @FXML

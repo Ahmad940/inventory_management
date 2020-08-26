@@ -10,10 +10,9 @@ import com.inventorymanagement.java.models.Record;
 import com.inventorymanagement.java.utils.DBConstants;
 import com.inventorymanagement.java.utils.DBUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,6 +27,36 @@ public class RecordsDB {
         } catch (SQLException e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
         }
+    }
+
+    // get All records
+    public List<Record> getAllRecord() {
+        String query = "SELECT * FROM " + DBConstants.TABLE_RECORDS;
+        List<Record> categoryList = new ArrayList<>();
+
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                Record record = new Record();
+                record.setId(resultSet.getInt(1));
+                record.setProductName(resultSet.getString(2));
+                record.setProductPrice(resultSet.getDouble(3));
+                record.setDescription(resultSet.getString(4));
+                record.setProductCategory(resultSet.getString(5));
+                record.setDate(resultSet.getString(6));
+
+                categoryList.add(record);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
+        return categoryList;
     }
 
     // adding new record

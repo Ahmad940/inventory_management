@@ -15,14 +15,13 @@ import javafx.scene.layout.AnchorPane;
 public class TopMenuController {
     double xOffset;
     double yOffset;
+
     @FXML
     private ImageView exit_btn;
     @FXML
     private ImageView maximize_btn;
     @FXML
     private ImageView minimize_btn;
-    @FXML
-    private ImageView menu_btn;
     @FXML
     private ImageView refresh_btn;
     @FXML

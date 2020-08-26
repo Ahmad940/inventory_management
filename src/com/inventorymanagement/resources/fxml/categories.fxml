@@ -2,19 +2,18 @@
 
 <?import com.jfoenix.controls.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity"
             minHeight="-Infinity" minWidth="-Infinity" prefHeight="604.0" prefWidth="954.0"
             xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="com.inventorymanagement.java.controllers.CategoryController">
     <children>
-        <AnchorPane fx:id="mainPane" layoutY="81.0" prefHeight="534.0" prefWidth="250.0"
-                    style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                    AnchorPane.rightAnchor="571.0" AnchorPane.topAnchor="70.0">
+        <AnchorPane layoutY="81.0" prefHeight="534.0" prefWidth="250.0" style="-fx-background-color: transparent;"
+                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="571.0"
+                    AnchorPane.topAnchor="70.0">
             <children>
                 <JFXButton focusTraversable="false" graphicTextGap="30.0" onMouseClicked="#productBtnEvent"
                            prefHeight="58.0" prefWidth="255.0" styleClass="nav_button"
@@ -95,19 +94,89 @@
                       prefHeight="501.0" prefWidth="669.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                       AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0" styleClass="top_table"/>
+                        <HBox prefHeight="100.0" prefWidth="200.0" styleClass="top_table" VBox.vgrow="NEVER">
+                            <children>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <JFXTextField fx:id="searchField" labelFloat="true" layoutX="15.0"
+                                                      layoutY="26.0" prefHeight="41.0" prefWidth="400.0"
+                                                      promptText="Search name or id" styleClass="search-field"
+                                                      AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="254.0"
+                                                      AnchorPane.topAnchor="26.0"/>
+                                        <JFXButton fx:id="addBtn" graphicTextGap="10.0" layoutX="187.0" layoutY="28.0"
+                                                   prefHeight="41.0" prefWidth="90.0" styleClass="primary-btn"
+                                                   text="Add" AnchorPane.rightAnchor="150.0"
+                                                   AnchorPane.topAnchor="28.0">
+                                            <graphic>
+                                                <ImageView fitHeight="24.0" fitWidth="18.0" pickOnBounds="true"
+                                                           preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../images/icons8_plus_math_52px.png"/>
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <font>
+                                                <Font size="15.0"/>
+                                            </font>
+                                        </JFXButton>
+                                        <JFXButton fx:id="refreshBtn" graphicTextGap="10.0" layoutX="369.0"
+                                                   layoutY="28.0" prefHeight="41.0" prefWidth="116.0"
+                                                   styleClass="primary-btn" text="Refresh" AnchorPane.rightAnchor="20.0"
+                                                   AnchorPane.topAnchor="28.0">
+                                            <graphic>
+                                                <ImageView fitHeight="24.0" fitWidth="18.0" pickOnBounds="true"
+                                                           preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../images/icons8_reset_48px.png"/>
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <font>
+                                                <Font size="15.0"/>
+                                            </font>
+                                        </JFXButton>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                             <children>
-                                <JFXTreeTableView prefHeight="412.0" prefWidth="553.0" tableMenuButtonVisible="true"
-                                                  HBox.hgrow="ALWAYS">
+                                <JFXTreeTableView fx:id="tableView" prefHeight="412.0" prefWidth="553.0"
+                                                  tableMenuButtonVisible="true" HBox.hgrow="ALWAYS">
                                     <columns>
-                                        <TreeTableColumn prefWidth="75.0" text="Id"/>
-                                        <TreeTableColumn prefWidth="75.0" text="Name"/>
-                                        <TreeTableColumn prefWidth="75.0" text="Description"/>
+                                        <TreeTableColumn fx:id="col_id" prefWidth="75.0" text="Id"/>
+                                        <TreeTableColumn fx:id="col_name" prefWidth="75.0" text="Name"/>
+                                        <TreeTableColumn fx:id="col_description" prefWidth="75.0" text="Description"/>
                                     </columns>
                                     <columnResizePolicy>
                                         <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
                                     </columnResizePolicy>
+                                    <contextMenu>
+                                        <ContextMenu>
+                                            <items>
+                                                <MenuItem fx:id="menuEditBtn" mnemonicParsing="false" text="Edit">
+                                                    <graphic>
+                                                        <ImageView fitHeight="15.0" fitWidth="20.0" pickOnBounds="true"
+                                                                   preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../images/icons8_pencil_48px.png"/>
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </MenuItem>
+                                                <MenuItem fx:id="menuDeleteBtn" mnemonicParsing="false" text="Delete">
+                                                    <graphic>
+                                                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
+                                                                   preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../images/icons8_delete_bin_48px.png"/>
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </MenuItem>
+                                            </items>
+                                        </ContextMenu>
+                                    </contextMenu>
                                 </JFXTreeTableView>
                             </children>
                         </HBox>

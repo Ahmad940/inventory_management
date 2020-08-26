@@ -15,17 +15,18 @@ public class Issue {
     public final static String DATE = "date";
     private int id;
     private double price;
-    private String productName, productDescription, productCategory;
+    private String productName, productDescription, productCategory, date;
 
     public Issue() {
     }
 
-    public Issue(int id, double price, String productName, String productDescription, String productCategory) {
+    public Issue(int id, double price, String productName, String productDescription, String productCategory, String date) {
         this.id = id;
         this.price = price;
         this.productName = productName;
         this.productDescription = productDescription;
         this.productCategory = productCategory;
+        this.date = date;
     }
 
     public int getId() {
@@ -66,5 +67,13 @@ public class Issue {
 
     public void setProductCategory(String productCategory) {
         this.productCategory = productCategory;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

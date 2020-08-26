@@ -41,3 +41,47 @@
 .top_table {
     -fx-background-color: #86F2D3;
 }
+
+.search-field {
+    -jfx-unfocus-color: #fff;
+    -jfx-focus-color: #000;
+    -fx-text-fill: #fff;
+    -fx-font-size: 15;
+}
+
+.primary-btn {
+    -fx-text-fill: #000;
+    -fx-background-color: #fff;
+}
+
+/*table section*/
+.tree-table-view {
+    -fx-tree-table-color: #0DD8A2;
+    /*-fx-font-size: 20;*/
+    -fx-tree-table-rippler-color: rgba(255, 0, 0, 0.9);
+}
+
+
+.tree-table-view:focused .tree-table-row-cell:selected {
+    -fx-background-color: -fx-tree-table-color;
+    -fx-table-cell-border-color: -fx-tree-table-color;
+    -fx-alignment: center;
+
+}
+
+.tree-table-view:focused .tree-table-row-cell:selected .tree-table-cell {
+    -fx-text-fill: white;
+}
+
+.tree-table-view .tree-table-cell {
+    -fx-border-width: 0 0 0 0;
+    -fx-padding: 20 0 17 0;
+    -fx-alignment: center;
+}
+
+.tree-table-view .column-header,
+.tree-table-view .column-header-background,
+.tree-table-view .column-header-background .filler {
+    -fx-border-width: 0 0 0 0;
+    -fx-background-color: TRANSPARENT;
+}

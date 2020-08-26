@@ -19,5 +19,6 @@ public final class Constants {
     public static String STYLESHEET_DIR = "/com/inventorymanagement/resources/styles/styles.css";
 
     //config
-    public static String DATABASE_CONFIG_DIR = "C:\\Users\\Ahmad\\IdeaProjects\\inventory management\\src\\com\\inventorymanagement\\resources\\configs\\dbConfig.properties";
+    public static String DATABASE_CONFIG_DIR = "dbConfig.properties";
+//    public static String DATABASE_CONFIG_DIR = "C:\\Users\\Ahmad\\IdeaProjects\\inventory management\\src\\com\\inventorymanagement\\resources\\configs\\dbConfig.properties";
 }

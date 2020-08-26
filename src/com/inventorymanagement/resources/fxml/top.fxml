@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.*?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
@@ -21,19 +21,10 @@
                 <Font name="Century Schoolbook" size="23.0"/>
             </font>
         </Label>
-        <ImageView fx:id="refresh_btn" fitHeight="25.0" fitWidth="20.0" layoutX="793.0" layoutY="9.0"
-                   pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="141.0" AnchorPane.topAnchor="9.0">
+        <ImageView fx:id="refresh_btn" fitHeight="25.0" fitWidth="18.0" layoutX="652.0" layoutY="11.0"
+                   pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="101.0" AnchorPane.topAnchor="11.0">
             <image>
                 <Image url="@../images/icons8_reset_48px.png"/>
-            </image>
-            <cursor>
-                <Cursor fx:constant="HAND"/>
-            </cursor>
-        </ImageView>
-        <ImageView fx:id="menu_btn" fitHeight="28.0" fitWidth="20.0" layoutX="826.0" layoutY="9.0" pickOnBounds="true"
-                   preserveRatio="true" AnchorPane.rightAnchor="108.0" AnchorPane.topAnchor="9.0">
-            <image>
-                <Image url="@../images/icons8_menu_100px_2.png"/>
             </image>
             <cursor>
                 <Cursor fx:constant="HAND"/>

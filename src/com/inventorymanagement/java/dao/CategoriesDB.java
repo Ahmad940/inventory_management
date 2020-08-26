@@ -10,10 +10,9 @@ import com.inventorymanagement.java.models.Category;
 import com.inventorymanagement.java.utils.DBConstants;
 import com.inventorymanagement.java.utils.DBUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,6 +27,33 @@ public class CategoriesDB {
         } catch (SQLException e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
         }
+    }
+
+    // get All categories
+    public List<Category> getAllCategories() {
+        String query = "SELECT * FROM " + DBConstants.TABLE_CATEGORIES;
+        List<Category> categoryList = new ArrayList<>();
+
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                Category category = new Category();
+                category.setId(resultSet.getInt(1));
+                category.setCategoryName(resultSet.getString(2));
+                category.setCategoryDescription(resultSet.getString(3));
+
+                categoryList.add(category);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
+        return categoryList;
     }
 
     // add category;

@@ -10,10 +10,9 @@ import com.inventorymanagement.java.models.Product;
 import com.inventorymanagement.java.utils.DBConstants;
 import com.inventorymanagement.java.utils.DBUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,6 +27,36 @@ public class ProductsDB {
         } catch (SQLException e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
         }
+    }
+
+    // get All products
+    public List<Product> getAllProducts() {
+        String query = "SELECT * FROM " + DBConstants.TABLE_PRODUCTS;
+        List<Product> productList = new ArrayList<>();
+
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setId(resultSet.getInt(1));
+                product.setProductName(resultSet.getString(2));
+                product.setProductDescription(resultSet.getString(3));
+                product.setPrice(resultSet.getDouble(4));
+                product.setNoInStock(resultSet.getInt(5));
+                product.setProductCategory(resultSet.getString(6));
+
+                productList.add(product);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
+        return productList;
     }
 
     // adding new product

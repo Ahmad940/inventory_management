@@ -6,16 +6,11 @@
  */
 package com.inventorymanagement;
 
-import com.inventorymanagement.java.dao.CategoriesDB;
-import com.inventorymanagement.java.dao.ProductsDB;
-import com.inventorymanagement.java.dao.RecordsDB;
-import com.inventorymanagement.java.dao.UsersDB;
-import com.inventorymanagement.java.models.Category;
-import com.inventorymanagement.java.models.Product;
-import com.inventorymanagement.java.models.Record;
-import com.inventorymanagement.java.models.User;
+import com.inventorymanagement.java.dao.*;
+import com.inventorymanagement.java.models.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
@@ -23,10 +18,31 @@ public class Test {
         CategoriesDB categoriesDB = new CategoriesDB();
         ProductsDB productsDB = new ProductsDB();
         RecordsDB recordsDB = new RecordsDB();
+        IssuesDB issuesDB = new IssuesDB();
         User user = new User(0, "Ahmad", "Muhammad", "ahmadmuhammadmk5@gmail.com", "male", "09050273391", "ahmad");
         Category category = new Category(0, "bag", "");
         Product product = new Product(0, 10, 200.01, "jasengan", "It a punk", "Category");
         Record record = new Record(0, 200.2, "name", "bag", "it a description", LocalDateTime.now().toString());
+
+        List<Product> productList = productsDB.getAllProducts();
+        List<Category> categoryList = categoriesDB.getAllCategories();
+        List<Record> recordsList = recordsDB.getAllRecord();
+        List<Issue> issuesList = issuesDB.getAllIssues();
+//        productList.forEach(product1 -> {
+//            System.out.println("Product id " + product1.getId() + " product Nane " + product1.getProductName());
+//        });
+//        categoryList.forEach(category1 -> {
+//            System.out.println("CId: " + category1.getId() + " CName: " + category1.getCategoryName() +
+//                    " cDescription: " + category1.getCategoryDescription());
+//        });
+//        recordsList.forEach(record1 -> {
+//            System.out.println("CId: " + record1.getId() + " CName: " + record1.getProductCategory() +
+//                    " cDescription: " + record1.getDescription());
+//        });
+        issuesList.forEach(issue -> {
+            System.out.println("CId: " + issue.getId() + " CName: " + issue.getProductCategory() +
+                    " cDescription: " + issue.getProductDescription());
+        });
 
 //        System.out.println("added: " + usersDB.addUser(user));
 //        System.out.println(usersDB.editUser(1, "Ahmad", "Muhammad", "male", "0902425002"));
