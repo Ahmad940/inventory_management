@@ -16,8 +16,8 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Modality;
 
 public class Alerts {
-    public void jfxAlert(Node node, String title, String body) {
-        JFXAlert alert = new JFXAlert(node.getScene().getWindow());
+    public static void jfxAlert(String title, String body) {
+        JFXAlert alert = new JFXAlert();
         alert.initModality(Modality.APPLICATION_MODAL);
         alert.setOverlayClose(false);
 
@@ -26,7 +26,6 @@ public class Alerts {
         layout.setBody(new Label(body));
 
         JFXButton closeButton = new JFXButton("Close");
-        closeButton.getStyleClass().add("dialog-accept");
 
         closeButton.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -44,7 +43,7 @@ public class Alerts {
     }
 
 
-    public void jfxBluredAlert(Node node, Node bluredNode, String title, String body) {
+    public static void jfxBluredAlert(Node node, Node bluredNode, String title, String body) {
         BoxBlur blur = new BoxBlur(3.0, 3.0, 3);
 
         JFXAlert alert = new JFXAlert(node.getScene().getWindow());

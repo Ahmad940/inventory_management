@@ -22,7 +22,7 @@ public class Test {
         User user = new User(0, "Ahmad", "Muhammad", "ahmadmuhammadmk5@gmail.com", "male", "09050273391", "ahmad");
         Category category = new Category(0, "bag", "");
         Product product = new Product(0, 10, 200.01, "jasengan", "It a punk", "Category");
-        Record record = new Record(0, 200.2, "name", "bag", "it a description", LocalDateTime.now().toString());
+        Record record = new Record(0, 200.2, "name", "bag", "it a description", "added", LocalDateTime.now().toString());
 
         List<Product> productList = productsDB.getAllProducts();
         List<Category> categoryList = categoriesDB.getAllCategories();

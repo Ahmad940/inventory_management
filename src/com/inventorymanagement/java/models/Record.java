@@ -12,20 +12,26 @@ public class Record {
     public final static String RECORD_PRICE = "product_price";
     public final static String RECORD_CATEGORY = "product_category";
     public final static String RECORD_DESCRIPTION = "product_description";
+    public final static String RECORD_ACTION = "action";
     public final static String RECORD_DATE = "date";
     private int id;
     private double productPrice;
-    private String productName, productCategory, description, date;
+    private String productName, productCategory, description, action, date;
 
     public Record() {
     }
 
-    public Record(int id, double productPrice, String productName, String productCategory, String description, String date) {
+    public Record(
+            int id, double productPrice,
+            String productName, String productCategory,
+            String description, String action, String date
+    ) {
         this.id = id;
         this.productPrice = productPrice;
         this.productName = productName;
         this.productCategory = productCategory;
         this.description = description;
+        this.action = action;
         this.date = date;
     }
 
@@ -75,5 +81,13 @@ public class Record {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
     }
 }

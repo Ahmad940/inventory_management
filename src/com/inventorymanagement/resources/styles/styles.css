@@ -85,3 +85,18 @@
     -fx-border-width: 0 0 0 0;
     -fx-background-color: TRANSPARENT;
 }
+
+.text-panel {
+    -fx-border-radius: 50;
+    -fx-border-color: #86F2D3;
+    -fx-border-width: 1 1 1 1;
+}
+
+.custom-text {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 50;
+}
+
+.radio-btn {
+    -jfx-selected-color: #0DD8A2;
+}

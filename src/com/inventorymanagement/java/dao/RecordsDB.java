@@ -47,7 +47,8 @@ public class RecordsDB {
                 record.setProductPrice(resultSet.getDouble(3));
                 record.setDescription(resultSet.getString(4));
                 record.setProductCategory(resultSet.getString(5));
-                record.setDate(resultSet.getString(6));
+                record.setAction(resultSet.getString(6));
+                record.setDate(resultSet.getString(7));
 
                 categoryList.add(record);
             }
@@ -62,7 +63,7 @@ public class RecordsDB {
     // adding new record
     public int addRecord(Record record) {
         String query = "INSERT INTO " + DBConstants.TABLE_RECORDS + " VALUES(" +
-                "?, ?, ?, ?, ?, ?)";
+                "?, ?, ?, ?, ?, ?, ?)";
         try {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, 0);
@@ -70,7 +71,8 @@ public class RecordsDB {
             preparedStatement.setDouble(3, record.getProductPrice());
             preparedStatement.setString(4, record.getDescription());
             preparedStatement.setString(5, record.getProductCategory());
-            preparedStatement.setString(6, record.getDate());
+            preparedStatement.setString(6, record.getAction());
+            preparedStatement.setString(7, record.getDate());
 
             return preparedStatement.executeUpdate();
         } catch (SQLException e) {

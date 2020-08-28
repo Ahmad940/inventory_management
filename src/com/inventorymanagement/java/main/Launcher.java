@@ -12,6 +12,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -32,7 +33,8 @@ public class Launcher extends Application {
     public void start(Stage primaryStage) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource(Constants.MAIN_FXML_DIR));
+            root = FXMLLoader.load(getClass().getResource(Constants.AUTH_FXML_DIR));
+//            root = FXMLLoader.load(getClass().getResource(Constants.MAIN_FXML_DIR));
         } catch (IOException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -43,6 +45,7 @@ public class Launcher extends Application {
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setTitle("Inventory Management System");
+        primaryStage.getIcons().add(new Image(Constants.STAGE_ICON));
         primaryStage.setScene(scene);
         primaryStage.show();
 

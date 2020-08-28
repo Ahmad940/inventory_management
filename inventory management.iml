@@ -11,5 +11,6 @@
     <orderEntry type="library" name="gson-2.8.6" level="project" />
     <orderEntry type="library" name="jfoenix-0.0.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.19" level="project" />
+    <orderEntry type="library" name="TrayNotification" level="project" />
   </component>
 </module>

@@ -130,9 +130,10 @@
                                     <columns>
                                         <TreeTableColumn fx:id="col_id" prefWidth="75.0" text="Id"/>
                                         <TreeTableColumn fx:id="col_name" prefWidth="75.0" text="Name"/>
-                                        <TreeTableColumn fx:id="col_price" prefWidth="75.0" text="Price"/>
+                                        <TreeTableColumn fx:id="col_price" prefWidth="75.0" text="Price (₦)"/>
                                         <TreeTableColumn fx:id="col_description" prefWidth="75.0" text="description"/>
                                         <TreeTableColumn fx:id="col_category" prefWidth="75.0" text="Category"/>
+                                        <TreeTableColumn fx:id="col_action" prefWidth="75.0" text="Event Type"/>
                                         <TreeTableColumn fx:id="col_date" prefWidth="75.0" text="Date"/>
                                     </columns>
                                     <columnResizePolicy>

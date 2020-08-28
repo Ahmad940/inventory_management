@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<StackPane xmlns:fx="http://javafx.com/fxml/1" fx:id="primaryPane" maxHeight="-Infinity" maxWidth="-Infinity"
+           minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="933.0"
+           xmlns="http://javafx.com/javafx/11.0.1"
+           fx:controller="com.inventorymanagement.java.controllers.AuthenticationController">
+    <children>
+        <VBox fx:id="mainPane" prefHeight="200.0" prefWidth="100.0">
+            <children>
+                <AnchorPane prefHeight="0.0" prefWidth="864.0" VBox.vgrow="NEVER">
+                    <fx:include source="top.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                AnchorPane.topAnchor="0.0"/>
+                </AnchorPane>
+                <VBox layoutY="100.0" prefHeight="489.0" prefWidth="933.0" VBox.vgrow="ALWAYS">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    </padding>
+                    <children>
+                        <HBox prefHeight="494.0" prefWidth="913.0" VBox.vgrow="ALWAYS">
+                            <children>
+                                <VBox prefHeight="427.0" prefWidth="370.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <HBox alignment="CENTER" prefHeight="73.0" prefWidth="558.0">
+                                            <children>
+                                                <Label prefHeight="61.0" prefWidth="172.0" text="Signup"
+                                                       textFill="#0dd8a2">
+                                                    <font>
+                                                        <Font name="Bauhaus 93" size="51.0"/>
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </HBox>
+                                        <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0" spacing="30.0"
+                                              VBox.vgrow="ALWAYS">
+                                            <children>
+                                                <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="59.0"
+                                                      prefWidth="275.0" styleClass="text-panel" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <AnchorPane prefHeight="57.0" prefWidth="224.0"
+                                                                    HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <ImageView fitHeight="20.0" fitWidth="19.0"
+                                                                           layoutX="18.0" layoutY="18.0"
+                                                                           pickOnBounds="true" preserveRatio="true">
+                                                                    <image>
+                                                                        <Image url="@../images/icons8_user_male_52px.png"/>
+                                                                    </image>
+                                                                </ImageView>
+                                                                <TextField fx:id="firstNameField"
+                                                                           focusTraversable="false" layoutX="29.0"
+                                                                           maxHeight="1.7976931348623157E308"
+                                                                           maxWidth="1.7976931348623157E308"
+                                                                           prefHeight="56.0" prefWidth="129.0"
+                                                                           promptText="First Name"
+                                                                           styleClass="custom-text"
+                                                                           AnchorPane.leftAnchor="0.0"
+                                                                           AnchorPane.rightAnchor="0.0">
+                                                                    <font>
+                                                                        <Font size="14.0"/>
+                                                                    </font>
+                                                                </TextField>
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="59.0"
+                                                      prefWidth="275.0" styleClass="text-panel" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <AnchorPane prefHeight="57.0" prefWidth="224.0"
+                                                                    HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <ImageView fitHeight="20.0" fitWidth="19.0"
+                                                                           layoutX="18.0" layoutY="18.0"
+                                                                           pickOnBounds="true" preserveRatio="true">
+                                                                    <image>
+                                                                        <Image url="@../images/icons8_user_male_52px.png"/>
+                                                                    </image>
+                                                                </ImageView>
+                                                                <TextField fx:id="lastNameField"
+                                                                           focusTraversable="false" layoutX="29.0"
+                                                                           maxHeight="1.7976931348623157E308"
+                                                                           maxWidth="1.7976931348623157E308"
+                                                                           prefHeight="56.0" prefWidth="129.0"
+                                                                           promptText="Last Name"
+                                                                           styleClass="custom-text"
+                                                                           AnchorPane.leftAnchor="0.0"
+                                                                           AnchorPane.rightAnchor="0.0">
+                                                                    <font>
+                                                                        <Font size="14.0"/>
+                                                                    </font>
+                                                                </TextField>
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                            <padding>
+                                                <Insets left="20.0" right="20.0"/>
+                                            </padding>
+                                        </HBox>
+                                        <HBox alignment="CENTER" prefHeight="115.0" prefWidth="200.0" spacing="30.0"
+                                              VBox.vgrow="ALWAYS">
+                                            <children>
+                                                <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="59.0"
+                                                      prefWidth="275.0" styleClass="text-panel" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <AnchorPane prefHeight="57.0" prefWidth="224.0"
+                                                                    HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <ImageView fitHeight="20.0" fitWidth="19.0"
+                                                                           layoutX="18.0" layoutY="18.0"
+                                                                           pickOnBounds="true" preserveRatio="true">
+                                                                    <image>
+                                                                        <Image url="@../images/icons8_envelope_52px.png"/>
+                                                                    </image>
+                                                                </ImageView>
+                                                                <TextField fx:id="emailField" focusTraversable="false"
+                                                                           layoutX="29.0"
+                                                                           maxHeight="1.7976931348623157E308"
+                                                                           maxWidth="1.7976931348623157E308"
+                                                                           prefHeight="56.0" prefWidth="129.0"
+                                                                           promptText="Email" styleClass="custom-text"
+                                                                           AnchorPane.leftAnchor="0.0"
+                                                                           AnchorPane.rightAnchor="0.0">
+                                                                    <font>
+                                                                        <Font size="14.0"/>
+                                                                    </font>
+                                                                </TextField>
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="59.0"
+                                                      prefWidth="275.0" styleClass="text-panel" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <AnchorPane prefHeight="57.0" prefWidth="224.0"
+                                                                    HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <ImageView fitHeight="20.0" fitWidth="19.0"
+                                                                           layoutX="18.0" layoutY="18.0"
+                                                                           pickOnBounds="true" preserveRatio="true">
+                                                                    <image>
+                                                                        <Image url="@../images/icons8_lock_52px.png"/>
+                                                                    </image>
+                                                                </ImageView>
+                                                                <TextField fx:id="passwordField"
+                                                                           focusTraversable="false" layoutX="29.0"
+                                                                           maxHeight="1.7976931348623157E308"
+                                                                           maxWidth="1.7976931348623157E308"
+                                                                           prefHeight="56.0" prefWidth="129.0"
+                                                                           promptText="Password"
+                                                                           styleClass="custom-text"
+                                                                           AnchorPane.leftAnchor="0.0"
+                                                                           AnchorPane.rightAnchor="0.0">
+                                                                    <font>
+                                                                        <Font size="14.0"/>
+                                                                    </font>
+                                                                </TextField>
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                            <padding>
+                                                <Insets left="20.0" right="20.0"/>
+                                            </padding>
+                                        </HBox>
+                                        <HBox alignment="CENTER" prefHeight="67.0" prefWidth="558.0" spacing="30.0"
+                                              VBox.vgrow="ALWAYS">
+                                            <padding>
+                                                <Insets left="20.0" right="20.0"/>
+                                            </padding>
+                                            <children>
+                                                <Label text="Gender" textFill="#0dd8a2"/>
+                                                <JFXRadioButton fx:id="maleRadio" focusTraversable="false"
+                                                                styleClass="radio-btn" text="Male">
+                                                    <toggleGroup>
+                                                        <ToggleGroup fx:id="gender"/>
+                                                    </toggleGroup>
+                                                </JFXRadioButton>
+                                                <JFXRadioButton fx:id="femaleRadio" focusTraversable="false"
+                                                                styleClass="radio-btn" text="Female"
+                                                                toggleGroup="$gender"/>
+                                            </children>
+                                        </HBox>
+                                        <HBox alignment="CENTER" prefHeight="48.0" prefWidth="552.0" spacing="30.0"
+                                              VBox.vgrow="ALWAYS">
+                                            <children>
+                                                <JFXButton fx:id="signUpBtn" onMouseClicked="#signUpBtnAction"
+                                                           focusTraversable="false" prefHeight="48.0" prefWidth="587.0"
+                                                           style="-fx-background-color: #0DD8A2;" text="SignUp"
+                                                           textFill="WHITE" HBox.hgrow="ALWAYS">
+                                                    <font>
+                                                        <Font name="Bauhaus 93" size="22.0"/>
+                                                    </font>
+                                                </JFXButton>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets/>
+                                    </HBox.margin>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                    </padding>
+                                </VBox>
+                                <Separator orientation="VERTICAL" prefHeight="200.0" HBox.hgrow="ALWAYS"/>
+                                <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <HBox alignment="CENTER" prefHeight="20.0" prefWidth="291.0">
+                                            <children>
+                                                <Label prefHeight="59.0" prefWidth="145.0" text="Login"
+                                                       textFill="#0dd8a2">
+                                                    <font>
+                                                        <Font name="Bauhaus 93" size="51.0"/>
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </HBox>
+                                        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="200.0" spacing="30.0"
+                                              VBox.vgrow="ALWAYS">
+                                            <children>
+                                                <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="59.0"
+                                                      prefWidth="275.0" styleClass="text-panel" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <AnchorPane prefHeight="57.0" prefWidth="224.0"
+                                                                    HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <ImageView fitHeight="20.0" fitWidth="19.0"
+                                                                           layoutX="18.0" layoutY="18.0"
+                                                                           pickOnBounds="true" preserveRatio="true">
+                                                                    <image>
+                                                                        <Image url="@../images/icons8_envelope_52px.png"/>
+                                                                    </image>
+                                                                </ImageView>
+                                                                <TextField fx:id="loginEmailBtn"
+                                                                           focusTraversable="false" layoutX="29.0"
+                                                                           maxHeight="1.7976931348623157E308"
+                                                                           maxWidth="1.7976931348623157E308"
+                                                                           prefHeight="56.0" prefWidth="129.0"
+                                                                           promptText="Email" styleClass="custom-text"
+                                                                           AnchorPane.leftAnchor="0.0"
+                                                                           AnchorPane.rightAnchor="0.0">
+                                                                    <font>
+                                                                        <Font size="14.0"/>
+                                                                    </font>
+                                                                </TextField>
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                            <padding>
+                                                <Insets left="20.0" right="20.0"/>
+                                            </padding>
+                                        </HBox>
+                                        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="294.0" spacing="30.0"
+                                              VBox.vgrow="ALWAYS">
+                                            <children>
+                                                <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="59.0"
+                                                      prefWidth="275.0" styleClass="text-panel" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <AnchorPane prefHeight="57.0" prefWidth="224.0"
+                                                                    HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <ImageView fitHeight="20.0" fitWidth="19.0"
+                                                                           layoutX="18.0" layoutY="18.0"
+                                                                           pickOnBounds="true" preserveRatio="true">
+                                                                    <image>
+                                                                        <Image url="@../images/icons8_lock_52px.png"/>
+                                                                    </image>
+                                                                </ImageView>
+                                                                <PasswordField fx:id="loginPasswordField"
+                                                                               focusTraversable="false"
+                                                                               promptText="Password"
+                                                                               styleClass="custom-text"
+                                                                               AnchorPane.bottomAnchor="0.0"
+                                                                               AnchorPane.leftAnchor="0.0"
+                                                                               AnchorPane.rightAnchor="0.0"
+                                                                               AnchorPane.topAnchor="0.0"/>
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                            <padding>
+                                                <Insets left="20.0" right="20.0"/>
+                                            </padding>
+                                        </HBox>
+                                        <HBox alignment="CENTER" prefHeight="109.0" prefWidth="294.0" spacing="30.0"
+                                              VBox.vgrow="ALWAYS">
+                                            <children>
+                                                <JFXButton onMouseClicked="#loginBtnAction" fx:id="loginBtn"
+                                                           focusTraversable="false" prefHeight="48.0" prefWidth="587.0"
+                                                           style="-fx-background-color: #0DD8A2;" text="Login"
+                                                           textFill="WHITE" HBox.hgrow="ALWAYS">
+                                                    <font>
+                                                        <Font name="Bauhaus 93" size="22.0"/>
+                                                    </font>
+                                                </JFXButton>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                    </padding>
+                                </VBox>
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                            </padding>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+</StackPane>

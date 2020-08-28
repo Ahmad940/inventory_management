@@ -6,15 +6,20 @@
  */
 package com.inventorymanagement.java.controllers;
 
+import com.inventorymanagement.java.dao.CategoriesDB;
+import com.inventorymanagement.java.dao.IssuesDB;
 import com.inventorymanagement.java.dao.ProductsDB;
+import com.inventorymanagement.java.dao.RecordsDB;
 import com.inventorymanagement.java.main.Launcher;
+import com.inventorymanagement.java.models.Category;
+import com.inventorymanagement.java.models.Issue;
 import com.inventorymanagement.java.models.Product;
+import com.inventorymanagement.java.models.Record;
+import com.inventorymanagement.java.utils.Alerts;
 import com.inventorymanagement.java.utils.Constants;
 import com.inventorymanagement.java.utils.MyScene;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
+import com.inventorymanagement.java.utils.Validators;
+import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -22,16 +27,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.*;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainController {
@@ -40,14 +49,15 @@ public class MainController {
     List<Product> getProductsList = null;
     ObservableList<RecursiveProduct> productList = null;
     ProductsDB productsDB = new ProductsDB();
+    IssuesDB issuesDB = new IssuesDB();
+    CategoriesDB categoriesDB = new CategoriesDB();
+    RecordsDB recordsDB = new RecordsDB();
     @FXML
     private MenuItem menuEditBtn;
     @FXML
     private MenuItem menuDeleteBtn;
     @FXML
     private JFXButton addBtn;
-    @FXML
-    private JFXButton refreshBtn;
     @FXML
     private JFXButton issuePurchaseBtn;
     @FXML
@@ -58,6 +68,8 @@ public class MainController {
     private TreeTableColumn<RecursiveProduct, String> col_quantity;
     @FXML
     private AnchorPane mainPane;
+    @FXML
+    private StackPane primaryPane;
     @FXML
     private TreeTableColumn<RecursiveProduct, String> col_category;
     @FXML
@@ -73,8 +85,351 @@ public class MainController {
         productList = FXCollections.observableArrayList();
         getProductsList = productsDB.getAllProducts();
 
+        // setting btn events
+        btnEvents();
+        // setting table values
         setTable();
+        // setting stage draggable
         setStageDraggable();
+    }
+
+    public void refreshAction() {
+        // event for refresh
+        productList.removeAll(productList);
+        getProductsList = productsDB.getAllProducts();
+        getProductsList.forEach(product -> {
+            productList.add(new RecursiveProduct(String.valueOf(product.getId()), product.getProductName(),
+                    String.valueOf(product.getPrice()), product.getProductDescription(),
+                    String.valueOf(product.getNoInStock()), product.getProductCategory()));
+        });
+    }
+
+    // setting btn events
+    private void btnEvents() {
+        // event for add btn
+        addBtn.setOnMouseClicked(event -> {
+            BoxBlur blur = new BoxBlur(3.0, 3.0, 3);
+            mainPane.setEffect(blur);
+
+            JFXDialogLayout content = new JFXDialogLayout();
+            JFXDialog dialog = new JFXDialog(primaryPane, content, JFXDialog.DialogTransition.TOP);
+            content.setAlignment(Pos.CENTER);
+            content.setHeading(new Text("Add Product"));
+            dialog.setOverlayClose(false);
+            VBox box = new VBox();
+            box.setSpacing(15);
+            box.setAlignment(Pos.CENTER);
+
+            JFXTextField productNameField = new JFXTextField();
+            productNameField.setPromptText("Product Name");
+            productNameField.setLabelFloat(true);
+
+            JFXTextField productDescriptionField = new JFXTextField();
+            productDescriptionField.setPromptText("Product Description");
+            productDescriptionField.setLabelFloat(true);
+
+            JFXTextField productPriceField = new JFXTextField();
+            productPriceField.setPromptText("Product Price");
+            productPriceField.setLabelFloat(true);
+
+            JFXTextField numberInStockField = new JFXTextField();
+            numberInStockField.setPromptText("Number In Stock");
+            numberInStockField.setLabelFloat(true);
+
+            JFXComboBox<String> categoryComboList = new JFXComboBox<>();
+            categoryComboList.setPromptText("Category");
+            categoryComboList.setPrefWidth(400.0);
+            categoryComboList.setLabelFloat(true);
+
+            ObservableList<Category> departmentsList = FXCollections.observableArrayList(categoriesDB.getAllCategories());
+            departmentsList.forEach(category -> {
+                categoryComboList.getItems().add(category.getCategoryName());
+            });
+
+            box.getChildren().addAll(productNameField, productDescriptionField, productPriceField, numberInStockField, categoryComboList);
+            box.setSpacing(30.0);
+            content.setBody(box);
+
+            JFXButton saveBtn = new JFXButton("Save");
+            JFXButton cancelBtn = new JFXButton("Cancel");
+
+            saveBtn.getStyleClass().add("dial-btn");
+            cancelBtn.getStyleClass().add("dial-btn");
+
+
+            saveBtn.setOnAction(event1 -> {
+                if (productNameField.getText().isEmpty() || productNameField.getText().trim().isEmpty()) {
+                    Alerts.jfxAlert("Error", "Product Name Field cannot be empty");
+                    return;
+                }
+
+                if (productDescriptionField.getText().isEmpty() || productDescriptionField.getText().trim().isEmpty()) {
+                    Alerts.jfxAlert("Error", "Description Field cannot be empty");
+                    return;
+                }
+
+                if (productPriceField.getText().isEmpty() || productPriceField.getText().trim().isEmpty()) {
+                    Alerts.jfxAlert("Error", "Product Price Field cannot be empty");
+                    return;
+                }
+
+                if (numberInStockField.getText().isEmpty() || numberInStockField.getText().trim().isEmpty()) {
+                    Alerts.jfxAlert("Error", "Number In Stock Field cannot be empty");
+                    return;
+                }
+
+                if (!Validators.isNumber(numberInStockField.getText())) {
+                    Alerts.jfxAlert("Error", "Number In Field Must Be a Number");
+                    return;
+                }
+
+                if (!Validators.isDouble(productPriceField.getText())) {
+                    Alerts.jfxAlert("Error", "Product Price Field Must Be a Number");
+                    return;
+                }
+
+                if (categoryComboList.getSelectionModel().isEmpty()) {
+                    Alerts.jfxAlert("Error", "Category must be selected");
+                    return;
+                }
+
+//                Issue issue = new Issue(0, Integer.parseInt(numberInStockField.getText()),
+//                        Double.parseDouble(productPriceField.getText()),
+//                        productNameField.getText(), productDescriptionField.getText(),
+//                        categoryComboList.getSelectionModel().getSelectedItem());
+                Issue issue = new Issue(0, Double.parseDouble(productPriceField.getText() + "D"), productNameField.getText(),
+                        productDescriptionField.getText(), categoryComboList.getSelectionModel().getSelectedItem(),
+                        Integer.parseInt(numberInStockField.getText()), LocalDateTime.now().toString());
+
+                if (issuesDB.addIssue(issue) != 1) {
+                    Alerts.jfxAlert("Error", "An error occurred");
+                    return;
+                }
+
+                refreshAction();
+                dialog.close();
+            });
+
+            cancelBtn.setOnAction(event1 -> {
+                dialog.close();
+            });
+
+            content.setActions(saveBtn, cancelBtn);
+
+            dialog.setOnDialogClosed(event1 -> {
+                mainPane.setEffect(null);
+            });
+            dialog.show();
+        });
+
+        // editing for edit btn
+        menuEditBtn.setOnAction(event -> {
+            List<RecursiveProduct> selectedProduct = new ArrayList<>();
+            selectedProduct.add(tableView.getSelectionModel().getSelectedItem().getValue());
+
+            BoxBlur blur = new BoxBlur(3.0, 3.0, 3);
+            mainPane.setEffect(blur);
+
+            JFXDialogLayout content = new JFXDialogLayout();
+            JFXDialog dialog = new JFXDialog(primaryPane, content, JFXDialog.DialogTransition.TOP);
+            content.setAlignment(Pos.CENTER);
+            content.setHeading(new Text("Edit Product"));
+            dialog.setOverlayClose(false);
+            VBox box = new VBox();
+            box.setSpacing(15);
+            box.setAlignment(Pos.CENTER);
+
+            JFXTextField productIdField = new JFXTextField();
+            productIdField.setPromptText("Product Id");
+            productIdField.setLabelFloat(true);
+            productIdField.setDisable(true);
+
+            JFXTextField productNameField = new JFXTextField();
+            productNameField.setPromptText("Product Name");
+            productNameField.setLabelFloat(true);
+
+            JFXTextField productDescriptionField = new JFXTextField();
+            productDescriptionField.setPromptText("Product Description");
+            productDescriptionField.setLabelFloat(true);
+
+            JFXTextField productPriceField = new JFXTextField();
+            productPriceField.setPromptText("Product Price");
+            productPriceField.setLabelFloat(true);
+
+            JFXTextField numberInStockField = new JFXTextField();
+            numberInStockField.setPromptText("Number In Stock");
+            numberInStockField.setLabelFloat(true);
+
+            JFXComboBox<String> categoryComboList = new JFXComboBox<>();
+            categoryComboList.setPromptText("Category");
+            categoryComboList.setPrefWidth(400.0);
+            categoryComboList.setLabelFloat(true);
+
+            selectedProduct.forEach(recursiveProduct -> {
+                productIdField.setText(recursiveProduct.getId());
+                productNameField.setText(recursiveProduct.getProductName());
+                productDescriptionField.setText(recursiveProduct.getProductDescription());
+                productPriceField.setText(recursiveProduct.getProductPrice());
+                numberInStockField.setText(recursiveProduct.getNoInStock());
+                categoryComboList.getItems().add(recursiveProduct.getProductCategory());
+                categoryComboList.getSelectionModel().select(0);
+            });
+
+            ObservableList<Category> departmentsList = FXCollections.observableArrayList(categoriesDB.getAllCategories());
+            departmentsList.forEach(category -> {
+                categoryComboList.getItems().add(category.getCategoryName());
+            });
+
+            box.getChildren().addAll(productIdField, productNameField, productDescriptionField, productPriceField, numberInStockField, categoryComboList);
+            box.setSpacing(30.0);
+            content.setBody(box);
+
+            JFXButton saveBtn = new JFXButton("Save");
+            JFXButton cancelBtn = new JFXButton("Cancel");
+
+            saveBtn.getStyleClass().add("dial-btn");
+            cancelBtn.getStyleClass().add("dial-btn");
+
+
+            saveBtn.setOnAction(event1 -> {
+                if (productNameField.getText().isEmpty() || productNameField.getText().trim().isEmpty()) {
+                    Alerts.jfxAlert("Error", "Product Name Field cannot be empty");
+                    return;
+                }
+
+                if (productDescriptionField.getText().isEmpty() || productDescriptionField.getText().trim().isEmpty()) {
+                    Alerts.jfxAlert("Error", "Description Field cannot be empty");
+                    return;
+                }
+
+                if (productPriceField.getText().isEmpty() || productPriceField.getText().trim().isEmpty()) {
+                    Alerts.jfxAlert("Error", "Product Price Field cannot be empty");
+                    return;
+                }
+
+                if (numberInStockField.getText().isEmpty() || numberInStockField.getText().trim().isEmpty()) {
+                    Alerts.jfxAlert("Error", "Number In Stock Field cannot be empty");
+                    return;
+                }
+
+                if (!Validators.isNumber(numberInStockField.getText())) {
+                    Alerts.jfxAlert("Error", "Number In Field Must Be a Number");
+                    return;
+                }
+
+                if (!Validators.isDouble(productPriceField.getText())) {
+                    Alerts.jfxAlert("Error", "Product Price Field Must Be a Number");
+                    return;
+                }
+
+                if (categoryComboList.getSelectionModel().isEmpty()) {
+                    Alerts.jfxAlert("Error", "Category must be selected");
+                    return;
+                }
+
+                Record record = new Record(
+                        0,
+                        Double.parseDouble(tableView.getSelectionModel().getSelectedItem().getValue().getProductPrice()),
+                        tableView.getSelectionModel().getSelectedItem().getValue().getProductName(),
+                        tableView.getSelectionModel().getSelectedItem().getValue().getProductCategory(),
+                        tableView.getSelectionModel().getSelectedItem().getValue().getProductDescription(),
+                        "edited", LocalDateTime.now().toString()
+                );
+
+                if (recordsDB.addRecord(record) != 1) {
+                    Alerts.jfxAlert("Error", "An error occurred");
+                    return;
+                }
+
+                Product product = new Product(0, Integer.parseInt(numberInStockField.getText()),
+                        Double.parseDouble(productPriceField.getText()),
+                        productNameField.getText(), productDescriptionField.getText(),
+                        categoryComboList.getSelectionModel().getSelectedItem());
+
+                if (productsDB.editProducts(Integer.parseInt(productIdField.getText()), productNameField.getText(),
+                        productDescriptionField.getText(), Double.parseDouble(productPriceField.getText()),
+                        Integer.parseInt(numberInStockField.getText()),
+                        categoryComboList.getSelectionModel().getSelectedItem()) != 1) {
+                    Alerts.jfxAlert("Error", "An error occurred");
+                    return;
+                }
+                refreshAction();
+                dialog.close();
+            });
+
+            cancelBtn.setOnAction(event1 -> {
+                dialog.close();
+            });
+
+            content.setActions(saveBtn, cancelBtn);
+
+            dialog.setOnDialogClosed(event1 -> {
+                mainPane.setEffect(null);
+            });
+            dialog.show();
+        });
+
+        // deleting event
+        menuDeleteBtn.setOnAction(event -> {
+            int productId = Integer.parseInt(tableView.getSelectionModel().getSelectedItem().getValue().getId());
+            BoxBlur blur = new BoxBlur(3.0, 3.0, 3);
+            mainPane.setEffect(blur);
+
+            JFXDialogLayout content = new JFXDialogLayout();
+            JFXDialog dialog = new JFXDialog(primaryPane, content, JFXDialog.DialogTransition.TOP);
+            content.setAlignment(Pos.CENTER);
+            content.setHeading(new Text("Delete Product"));
+            dialog.setOverlayClose(false);
+            VBox box = new VBox();
+            box.setSpacing(15);
+            box.setAlignment(Pos.CENTER);
+
+            Label text = new Label("Are you sure you want to delete this item ?");
+
+            box.getChildren().addAll(text);
+            box.setSpacing(30.0);
+            content.setBody(box);
+
+            JFXButton saveBtn = new JFXButton("Ok");
+            JFXButton cancelBtn = new JFXButton("Cancel");
+
+            saveBtn.getStyleClass().add("dial-btn");
+            cancelBtn.getStyleClass().add("dial-btn");
+            saveBtn.setOnAction(event1 -> {
+
+                Record record = new Record(
+                        0,
+                        Double.parseDouble(tableView.getSelectionModel().getSelectedItem().getValue().getProductPrice()),
+                        tableView.getSelectionModel().getSelectedItem().getValue().getProductName(),
+                        tableView.getSelectionModel().getSelectedItem().getValue().getProductCategory(),
+                        tableView.getSelectionModel().getSelectedItem().getValue().getProductDescription(),
+                        "deleted", LocalDateTime.now().toString()
+                );
+
+                if (recordsDB.addRecord(record) != 1) {
+                    Alerts.jfxAlert("Error", "An error occurred");
+                    return;
+                }
+
+                if (productsDB.deleteProduct(productId) != 1) {
+                    Alerts.jfxAlert("Error", "An error occurred");
+                    return;
+                }
+                refreshAction();
+                dialog.close();
+            });
+
+            cancelBtn.setOnAction(event1 -> {
+                dialog.close();
+            });
+
+            content.setActions(saveBtn, cancelBtn);
+
+            dialog.setOnDialogClosed(event1 -> {
+                mainPane.setEffect(null);
+            });
+            dialog.show();
+        });
     }
 
     // setting table values
