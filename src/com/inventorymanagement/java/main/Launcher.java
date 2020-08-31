@@ -6,6 +6,7 @@
  */
 package com.inventorymanagement.java.main;
 
+import com.inventorymanagement.java.io.UserWriter;
 import com.inventorymanagement.java.utils.Constants;
 import com.inventorymanagement.java.utils.configs.db.DBDataSource;
 import javafx.application.Application;
@@ -33,7 +34,10 @@ public class Launcher extends Application {
     public void start(Stage primaryStage) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource(Constants.AUTH_FXML_DIR));
+            if (UserWriter.getCurrentUser() != null)
+                root = FXMLLoader.load(getClass().getResource(Constants.MAIN_FXML_DIR));
+            else
+                root = FXMLLoader.load(getClass().getResource(Constants.AUTH_FXML_DIR));
 //            root = FXMLLoader.load(getClass().getResource(Constants.MAIN_FXML_DIR));
         } catch (IOException e) {
             System.out.println(e.getMessage());

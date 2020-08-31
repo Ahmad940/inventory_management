@@ -16,6 +16,7 @@ public final class Constants {
     public static String HISTORY_FXML_DIR = "/com/inventorymanagement/resources/fxml/history.fxml";
     public static String CATEGORY_FXML_DIR = "/com/inventorymanagement/resources/fxml/categories.fxml";
     public static String SIGN_UP_FXML_DIR = "/com/inventorymanagement/resources/fxml/auth.fxml";
+    public static String AUTH_FXML_DIR = "/com/inventorymanagement/resources/fxml/auth.fxml";
 
     //css
     public static String STYLESHEET_DIR = "/com/inventorymanagement/resources/styles/styles.css";
@@ -23,5 +24,7 @@ public final class Constants {
     //config
     public static String DATABASE_CONFIG_DIR = "dbConfig.properties";
     //    public static String DATABASE_CONFIG_DIR = "C:\\Users\\Ahmad\\IdeaProjects\\inventory management\\src\\com\\inventorymanagement\\resources\\configs\\dbConfig.properties";
-    public static String AUTH_FXML_DIR = "/com/inventorymanagement/resources/fxml/auth.fxml";
+
+    // file data
+    public static String USERDATAFILE = "userData/currentUser.bin";
 }

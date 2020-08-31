@@ -116,4 +116,21 @@ public class ProductsDB {
 
         return DBUtil.getInstance().statement(query);
     }
+
+    // purchase
+    public int issuePurchase(int id, int newQuantity) {
+        String query = "update " + DBConstants.TABLE_PRODUCTS + " set " +
+                Product.PRODUCT_NUMBER_IN_STOCK + " =? where id=?";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, newQuantity);
+            preparedStatement.setInt(2, id);
+
+            return preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+            return -1;
+        }
+    }
 }

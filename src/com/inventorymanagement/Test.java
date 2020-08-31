@@ -55,5 +55,12 @@ public class Test {
 //        System.out.println(productsDB.deleteProduct(2));
 //        System.out.println(recordsDB.addRecord(record));
 //        System.out.println(recordsDB.deleteRecord(1));
+//        try {
+//            System.out.println(usersDB.authenticate("ahmadmuhammadmak5@gmail.com", DigestUtils.sha1Hex("@Ahmad12345")));
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            System.out.println(e.getMessage());
+//        }
+        System.out.println(productsDB.issuePurchase(1, 25));
     }
 }

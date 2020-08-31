@@ -7,6 +7,7 @@
 package com.inventorymanagement.java.dao;
 
 import com.inventorymanagement.java.models.*;
+import com.inventorymanagement.java.utils.Alerts;
 import com.inventorymanagement.java.utils.DBConstants;
 import com.inventorymanagement.java.utils.configs.db.DBDataSource;
 
@@ -48,6 +49,7 @@ public class DBConnection {
             return connection;
         } catch (SQLException e) {
 //            System.out.println(e.getMessage());
+            Alerts.jfxAlertShowAndWait("Error", "Unable to connect to database");
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
             return null;
         }

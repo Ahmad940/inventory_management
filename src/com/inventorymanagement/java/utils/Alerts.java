@@ -16,6 +16,32 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Modality;
 
 public class Alerts {
+    public static void jfxAlertShowAndWait(String title, String body) {
+        JFXAlert alert = new JFXAlert();
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.setOverlayClose(false);
+
+        JFXDialogLayout layout = new JFXDialogLayout();
+        layout.setHeading(new Label(title));
+        layout.setBody(new Label(body));
+
+        JFXButton closeButton = new JFXButton("Close");
+
+        closeButton.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                alert.hide();
+            }
+        });
+
+        closeButton.setOnAction(event -> {
+            alert.hideWithAnimation();
+        });
+
+        layout.setActions(closeButton);
+        alert.setContent(layout);
+        alert.showAndWait();
+    }
+
     public static void jfxAlert(String title, String body) {
         JFXAlert alert = new JFXAlert();
         alert.initModality(Modality.APPLICATION_MODAL);

@@ -79,4 +79,16 @@ public class UsersDB {
 
         return DBUtil.getInstance().counter(query);
     }
+
+    public Boolean authenticate(String email, String password) throws SQLException {
+        String query = "SELECT * FROM " + DBConstants.TABLE_USERS + " WHERE email = '" + email + "' and " +
+                "password = '" + password + "'";
+
+        Statement statement = connection.createStatement();
+        statement.executeQuery(query);
+        if (statement.getResultSet().next())
+            return true;
+        else
+            return false;
+    }
 }

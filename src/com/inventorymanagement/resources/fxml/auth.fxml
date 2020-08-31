@@ -25,7 +25,7 @@
                     <children>
                         <HBox prefHeight="494.0" prefWidth="913.0" VBox.vgrow="ALWAYS">
                             <children>
-                                <VBox prefHeight="427.0" prefWidth="370.0" HBox.hgrow="ALWAYS">
+                                <VBox focusTraversable="true" prefHeight="427.0" prefWidth="370.0" HBox.hgrow="ALWAYS">
                                     <children>
                                         <HBox alignment="CENTER" prefHeight="73.0" prefWidth="558.0">
                                             <children>
@@ -53,8 +53,7 @@
                                                                         <Image url="@../images/icons8_user_male_52px.png"/>
                                                                     </image>
                                                                 </ImageView>
-                                                                <TextField fx:id="firstNameField"
-                                                                           focusTraversable="false" layoutX="29.0"
+                                                                <TextField fx:id="firstNameField" layoutX="29.0"
                                                                            maxHeight="1.7976931348623157E308"
                                                                            maxWidth="1.7976931348623157E308"
                                                                            prefHeight="56.0" prefWidth="129.0"
@@ -83,8 +82,7 @@
                                                                         <Image url="@../images/icons8_user_male_52px.png"/>
                                                                     </image>
                                                                 </ImageView>
-                                                                <TextField fx:id="lastNameField"
-                                                                           focusTraversable="false" layoutX="29.0"
+                                                                <TextField fx:id="lastNameField" layoutX="29.0"
                                                                            maxHeight="1.7976931348623157E308"
                                                                            maxWidth="1.7976931348623157E308"
                                                                            prefHeight="56.0" prefWidth="129.0"
@@ -121,8 +119,7 @@
                                                                         <Image url="@../images/icons8_envelope_52px.png"/>
                                                                     </image>
                                                                 </ImageView>
-                                                                <TextField fx:id="emailField" focusTraversable="false"
-                                                                           layoutX="29.0"
+                                                                <TextField fx:id="emailField" layoutX="29.0"
                                                                            maxHeight="1.7976931348623157E308"
                                                                            maxWidth="1.7976931348623157E308"
                                                                            prefHeight="56.0" prefWidth="129.0"
@@ -150,8 +147,7 @@
                                                                         <Image url="@../images/icons8_lock_52px.png"/>
                                                                     </image>
                                                                 </ImageView>
-                                                                <TextField fx:id="passwordField"
-                                                                           focusTraversable="false" layoutX="29.0"
+                                                                <TextField fx:id="passwordField" layoutX="29.0"
                                                                            maxHeight="1.7976931348623157E308"
                                                                            maxWidth="1.7976931348623157E308"
                                                                            prefHeight="56.0" prefWidth="129.0"
@@ -179,14 +175,12 @@
                                             </padding>
                                             <children>
                                                 <Label text="Gender" textFill="#0dd8a2"/>
-                                                <JFXRadioButton fx:id="maleRadio" focusTraversable="false"
-                                                                styleClass="radio-btn" text="Male">
+                                                <JFXRadioButton fx:id="maleRadio" styleClass="radio-btn" text="Male">
                                                     <toggleGroup>
                                                         <ToggleGroup fx:id="gender"/>
                                                     </toggleGroup>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="femaleRadio" focusTraversable="false"
-                                                                styleClass="radio-btn" text="Female"
+                                                <JFXRadioButton fx:id="femaleRadio" styleClass="radio-btn" text="Female"
                                                                 toggleGroup="$gender"/>
                                             </children>
                                         </HBox>
@@ -194,7 +188,7 @@
                                               VBox.vgrow="ALWAYS">
                                             <children>
                                                 <JFXButton fx:id="signUpBtn" onMouseClicked="#signUpBtnAction"
-                                                           focusTraversable="false" prefHeight="48.0" prefWidth="587.0"
+                                                           prefHeight="48.0" prefWidth="587.0"
                                                            style="-fx-background-color: #0DD8A2;" text="SignUp"
                                                            textFill="WHITE" HBox.hgrow="ALWAYS">
                                                     <font>
@@ -212,7 +206,7 @@
                                     </padding>
                                 </VBox>
                                 <Separator orientation="VERTICAL" prefHeight="200.0" HBox.hgrow="ALWAYS"/>
-                                <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                <VBox focusTraversable="true" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                     <children>
                                         <HBox alignment="CENTER" prefHeight="20.0" prefWidth="291.0">
                                             <children>
@@ -240,8 +234,7 @@
                                                                         <Image url="@../images/icons8_envelope_52px.png"/>
                                                                     </image>
                                                                 </ImageView>
-                                                                <TextField fx:id="loginEmailBtn"
-                                                                           focusTraversable="false" layoutX="29.0"
+                                                                <TextField fx:id="loginEmailBtn" layoutX="29.0"
                                                                            maxHeight="1.7976931348623157E308"
                                                                            maxWidth="1.7976931348623157E308"
                                                                            prefHeight="56.0" prefWidth="129.0"
@@ -278,7 +271,6 @@
                                                                     </image>
                                                                 </ImageView>
                                                                 <PasswordField fx:id="loginPasswordField"
-                                                                               focusTraversable="false"
                                                                                promptText="Password"
                                                                                styleClass="custom-text"
                                                                                AnchorPane.bottomAnchor="0.0"
@@ -297,8 +289,8 @@
                                         <HBox alignment="CENTER" prefHeight="109.0" prefWidth="294.0" spacing="30.0"
                                               VBox.vgrow="ALWAYS">
                                             <children>
-                                                <JFXButton onMouseClicked="#loginBtnAction" fx:id="loginBtn"
-                                                           focusTraversable="false" prefHeight="48.0" prefWidth="587.0"
+                                                <JFXButton fx:id="loginBtn" onMouseClicked="#loginBtnAction"
+                                                           prefHeight="48.0" prefWidth="587.0"
                                                            style="-fx-background-color: #0DD8A2;" text="Login"
                                                            textFill="WHITE" HBox.hgrow="ALWAYS">
                                                     <font>

@@ -94,7 +94,7 @@
 
 .custom-text {
     -fx-background-color: transparent;
-    -fx-padding: 0 0 0 50;
+    -fx-padding: 0 15 0 50;
 }
 
 .radio-btn {

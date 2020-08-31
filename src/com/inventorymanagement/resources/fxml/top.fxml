@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.Cursor?>
+<?import javafx.scene.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
@@ -52,6 +52,15 @@
                    preserveRatio="true" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="10.0">
             <image>
                 <Image url="@../images/icons8_delete_60px.png"/>
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="log_out_btn" fitHeight="29.0" fitWidth="25.0" layoutX="622.0" layoutY="7.0"
+                   pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="124.0" AnchorPane.topAnchor="7.0">
+            <image>
+                <Image url="@../images/icons8_logout_rounded_up_32px.png"/>
             </image>
             <cursor>
                 <Cursor fx:constant="HAND"/>

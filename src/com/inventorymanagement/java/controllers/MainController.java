@@ -108,6 +108,7 @@ public class MainController {
     private void btnEvents() {
         // event for add btn
         addBtn.setOnMouseClicked(event -> {
+
             BoxBlur blur = new BoxBlur(3.0, 3.0, 3);
             mainPane.setEffect(blur);
 
@@ -224,6 +225,11 @@ public class MainController {
 
         // editing for edit btn
         menuEditBtn.setOnAction(event -> {
+            if (tableView.getSelectionModel().getFocusedIndex() == -1) {
+                Alerts.jfxAlert("Error", "No item selected");
+                return;
+            }
+
             List<RecursiveProduct> selectedProduct = new ArrayList<>();
             selectedProduct.add(tableView.getSelectionModel().getSelectedItem().getValue());
 
@@ -371,6 +377,11 @@ public class MainController {
 
         // deleting event
         menuDeleteBtn.setOnAction(event -> {
+            if (tableView.getSelectionModel().getFocusedIndex() == -1) {
+                Alerts.jfxAlert("Error", "No item selected");
+                return;
+            }
+
             int productId = Integer.parseInt(tableView.getSelectionModel().getSelectedItem().getValue().getId());
             BoxBlur blur = new BoxBlur(3.0, 3.0, 3);
             mainPane.setEffect(blur);
@@ -415,6 +426,105 @@ public class MainController {
                     Alerts.jfxAlert("Error", "An error occurred");
                     return;
                 }
+                refreshAction();
+                dialog.close();
+            });
+
+            cancelBtn.setOnAction(event1 -> {
+                dialog.close();
+            });
+
+            content.setActions(saveBtn, cancelBtn);
+
+            dialog.setOnDialogClosed(event1 -> {
+                mainPane.setEffect(null);
+            });
+            dialog.show();
+        });
+
+        //issue purchase
+        issuePurchaseBtn.setOnAction(event -> {
+            if (tableView.getSelectionModel().getFocusedIndex() == -1) {
+                Alerts.jfxAlert("Error", "No item selected");
+                return;
+            }
+
+            BoxBlur blur = new BoxBlur(3.0, 3.0, 3);
+            mainPane.setEffect(blur);
+
+            JFXDialogLayout content = new JFXDialogLayout();
+            JFXDialog dialog = new JFXDialog(primaryPane, content, JFXDialog.DialogTransition.TOP);
+            content.setAlignment(Pos.CENTER);
+            content.setHeading(new Text("Issue Purchase"));
+            dialog.setOverlayClose(false);
+            VBox box = new VBox();
+            box.setSpacing(15);
+            box.setAlignment(Pos.CENTER);
+
+            JFXTextField quantityField = new JFXTextField("1");
+            quantityField.setPromptText("Enter quantity");
+            quantityField.setLabelFloat(true);
+
+            box.getChildren().addAll(quantityField);
+            box.setSpacing(30.0);
+            content.setBody(box);
+
+            JFXButton saveBtn = new JFXButton("Ok");
+            JFXButton cancelBtn = new JFXButton("Cancel");
+
+            saveBtn.getStyleClass().add("dial-btn");
+            cancelBtn.getStyleClass().add("dial-btn");
+            saveBtn.setOnAction(event1 -> {
+                if (quantityField.getText().isEmpty() || quantityField.getText().trim().isEmpty()) {
+                    Alerts.jfxAlert("Error", "Quantity Field cannot be empty");
+                    return;
+                }
+
+                if (!Validators.isNumber(quantityField.getText())) {
+                    Alerts.jfxAlert("Error", "Quantity must be a valid number");
+                    return;
+                }
+
+                if (Integer.parseInt(
+                        quantityField.getText()) > Integer.parseInt(
+                        tableView.getSelectionModel().getSelectedItem()
+                                .getValue().getNoInStock())
+                ) {
+                    Alerts.jfxAlert("Error", "The quantity provided is greater than quantity in stock");
+                    return;
+                }
+
+                Record record = new Record(
+                        0,
+                        Double.parseDouble(tableView.getSelectionModel().getSelectedItem().getValue().getProductPrice()),
+                        tableView.getSelectionModel().getSelectedItem().getValue().getProductName(),
+                        tableView.getSelectionModel().getSelectedItem().getValue().getProductCategory(),
+                        tableView.getSelectionModel().getSelectedItem().getValue().getProductDescription(),
+                        "purchased", LocalDateTime.now().toString()
+                );
+
+                if (recordsDB.addRecord(record) != 1) {
+                    Alerts.jfxAlert("Error", "An error occurred");
+                    return;
+                }
+
+                int newQuantity = Integer.parseInt(
+                        tableView.getSelectionModel().
+                                getSelectedItem().getValue().
+                                getNoInStock()) -
+                        Integer.parseInt(quantityField.getText());
+
+                if (productsDB.issuePurchase(Integer.parseInt(
+                        tableView.getSelectionModel().getSelectedItem().getValue().getId())
+                        , newQuantity) != 1) {
+                    Alerts.jfxAlert("Error", "Some error occurred");
+                }
+
+                if (newQuantity == 0) {
+                    productsDB.deleteProduct(Integer.parseInt(
+                            tableView.getSelectionModel().getSelectedItem().getValue().getId()));
+                }
+
                 refreshAction();
                 dialog.close();
             });
